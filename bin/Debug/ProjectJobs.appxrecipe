@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>NURI</Machine>
+    <WindowsUser>Nuri</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\ProjectJobs.exe">
+      <PackagePath>ProjectJobs.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\ProjectJobs.pdb">
+      <PackagePath>ProjectJobs.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\bottm.png">
+      <PackagePath>Assets\bottm.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\bottom.png">
+      <PackagePath>Assets\bottom.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\job.png">
+      <PackagePath>Assets\job.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\LightGray.png">
+      <PackagePath>Assets\LightGray.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\MediumGray.png">
+      <PackagePath>Assets\MediumGray.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\DarkGray.png">
+      <PackagePath>Assets\DarkGray.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\Untitled-6.png">
+      <PackagePath>Assets\Untitled-6.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\Assets\WideLogo.scale-100.png">
+      <PackagePath>Assets\WideLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\GroupedItemsPage.xaml">
+      <PackagePath>GroupedItemsPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\GroupDetailPage.xaml">
+      <PackagePath>GroupDetailPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\ItemDetailPage.xaml">
+      <PackagePath>ItemDetailPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\SearchResultsPage.xaml">
+      <PackagePath>SearchResultsPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nuri\Documents\Visual Studio 2012\Projects\JobsProject\ProjectJobs\ProjectJobs\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="3922639e-d9f9-4db7-9667-7b168b7efaeb" Publisher="CN=연구4팀" Version="1.1.0.0" />
+  <Properties>
+    <DisplayName>ProjectJobs</DisplayName>
+    <PublisherDisplayName>연구4팀</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ProjectJobs.App">
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
+      <m2:VisualElements DisplayName="ProjectJobs" Description="ProjectJobs" BackgroundColor="#6DCEFF" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\Square30x30Logo.png">
+        <m2:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square70x70Logo="Assets\Square70x70Logo.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen Image="Assets\SplashScreenDraft.png" BackgroundColor="#6DCEFF" />
+      </m2:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

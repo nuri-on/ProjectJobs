@@ -1,0 +1,183 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="ProjectJobs.ItemDetailPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjectJobs"
+    xmlns:data="using:ProjectJobs.Data"
+    xmlns:common="using:ProjectJobs.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <!-- 이 페이지에서 표시하는 항목의 컬렉션입니다. -->
+        <CollectionViewSource
+            x:Name="itemsViewSource"
+            Source="{Binding Items}"
+            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+    </Page.Resources>
+
+    <!--
+        이 모눈은 다음 두 개 행을 정의하는 페이지의 루트 패널로 사용됩니다.
+        * 행 0은 [뒤로] 단추 및 페이지 제목을 포함합니다.
+        * 행 1은 페이지 레이아웃의 나머지를 포함합니다.
+    -->
+    <Grid
+        Style="{StaticResource LayoutRootStyle}"
+        DataContext="{Binding Group}"
+        d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--
+            페이지의 나머지는 한 번에 한 항목에 대한 정보를 표시하는
+            하나의 큰 FlipView이며, 여기서 사용자는 선택한 그룹에 있는 모든 항목을 훑어볼 수
+            있습니다.
+        -->
+        <FlipView
+            x:Name="flipView"
+            AutomationProperties.AutomationId="ItemsFlipView"
+            AutomationProperties.Name="Item Details"
+            TabIndex="1"
+            Grid.RowSpan="2"
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}">
+
+            <FlipView.ItemContainerStyle>
+                <Style TargetType="FlipViewItem">
+                    <Setter Property="Margin" Value="0,137,0,0"/>
+                </Style>
+            </FlipView.ItemContainerStyle>
+
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+
+                    <!--
+                        시각적 상태 관리를 지원하므로 템플릿 항목으로 선택된 UserControl입니다.
+                        로드/언로드 이벤트는 페이지의 뷰 상태 업데이트를 명시적으로 구독합니다.
+                    -->
+                    <UserControl x:ConnectionId='2'                                                         >
+                        <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
+
+                            <!-- 필요한 경우 내용이 여러 행에 걸쳐 있을 수 있습니다. -->
+                            <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
+                                <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
+                                    <Paragraph>
+                                        <Run FontSize="26.667" FontWeight="Light" Text="{Binding Title}"/>
+                                        <LineBreak/>
+                                        <LineBreak/>
+                                        <Run FontWeight="Normal" Text="{Binding Subtitle}"/>
+                                    </Paragraph>
+                                    <Paragraph LineStackingStrategy="MaxHeight">
+                                        <InlineUIContainer>
+                                            <Image x:Name="image" MaxHeight="480" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
+                                        </InlineUIContainer>
+                                    </Paragraph>
+                                    <Paragraph>
+                                        <Run FontWeight="SemiLight" Text="{Binding Content}"/>
+                                    </Paragraph>
+                                </RichTextBlock>
+
+                                <!-- 이 템플릿에서 추가 열이 만들어집니다. -->
+                                <common:RichTextColumns.ColumnTemplate>
+                                    <DataTemplate>
+                                        <RichTextBlockOverflow Width="560" Margin="80,0,0,0">
+                                            <RichTextBlockOverflow.RenderTransform>
+                                                <TranslateTransform X="-1" Y="4"/>
+                                            </RichTextBlockOverflow.RenderTransform>
+                                        </RichTextBlockOverflow>
+                                    </DataTemplate>
+                                </common:RichTextColumns.ColumnTemplate>
+                            </common:RichTextColumns>
+
+                            <VisualStateManager.VisualStateGroups>
+
+                                <!-- FlipView 내에 있는 응용 프로그램의 뷰 상태가 시각적 상태에 반영됩니다. -->
+                                <VisualStateGroup x:Name="ApplicationViewStates">
+                                    <VisualState x:Name="FullScreenLandscape"/>
+                                    <VisualState x:Name="Filled"/>
+
+                                    <!-- 세로에 대해서는 좁은 100픽셀 여백 규칙을 따릅니다. -->
+                                    <VisualState x:Name="FullScreenPortrait">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="97,0,87,57"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="MaxHeight">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="400"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+
+                                    <!-- 기본 뷰 상태인 경우 내용은 서식이 변경되고 세로로 스크롤됩니다. -->
+                                    <VisualState x:Name="Snapped">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="17,0,17,57"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="scrollViewer" Storyboard.TargetProperty="Style">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource VerticalScrollViewerStyle}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextBlock" Storyboard.TargetProperty="Width">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="280"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="MaxHeight">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="160"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ScrollViewer>
+                    </UserControl>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+
+        <!-- [뒤로] 단추 및 페이지 제목 -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:ConnectionId='1' x:Name="backButton"                IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+        </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- 시각적 상태에 응용 프로그램의 뷰 상태가 반영됩니다. -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- [뒤로] 단추의 세로에 대해서는 좁은 100픽셀 여백 규칙을 따릅니다. -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- 기본 뷰 상태인 경우 [뒤로] 단추와 제목의 스타일이 다릅니다. -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>
+
